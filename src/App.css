@@ -12,3 +12,18 @@
   justify-content: space-around;
   margin-top: 100px;
  }
+ .header{
+  display: flex;
+  justify-content: space-between;
+  border-bottom: 1px solid #ccc;
+  height: 10vh;
+  align-items: center;
+ }
+ .nav{
+  display: flex;
+  justify-content: space-evenly;
+  width: 40vw;
+ }
+ .navli{
+  
+ }

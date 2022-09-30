@@ -1,5 +1,7 @@
-import {useState} from "react";
+import { Fragment, useState } from "react";
 import "./App.css";
+import Circle from "./components/Circle";
+import Header from "./components/Header";
 
 const circles = [
   {
@@ -25,27 +27,34 @@ const circles = [
 ];
 
 const App = () => {
- const [activeCircle,setActiveCircle] = useState(null)
+ const [activeCircle, setActiveCircle] = useState(null)
 
- const changeColor = (id) =>{
-  setActiveCircle(id)
- }
-    return (
+ const changeColor = (id) => {
+   if(activeCircle === id){
+    setActiveCircle(null)
+   } else {
+    setActiveCircle(id)
+   }
+ };
+
+  return (
+    <Fragment>
+      <Header color={circles[activeCircle-1]?.color}/>
       <div className="conteiner">
         {
           circles.map(circle => (
-            <div
+            <Circle
+              key={circle.id} 
               id={circle.id}
-              className='circle-item'
-              onClick={()=>changeColor(circle.id)}
-              style={{backgroundColor: activeCircle === circle.id ? 'rebeccapurple' : circle.color}}
-            >
-              {circle.id}
-            </div>
+              color={circle.color}
+              changeColor={changeColor}
+              activeCircle={activeCircle}
+            /> 
           ))
         }
       </div>
-    )
+    </Fragment>
+  )
 }
 
 export default App
